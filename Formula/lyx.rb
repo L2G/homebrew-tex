@@ -10,14 +10,13 @@ class Lyx < Formula
   depends_on "qt"
 
   def install
-    ENV["QT4DIR"] = Formula["qt"].prefix
-    ENV.append "CPPFLAGS", "-I" + Formula["boost"].include + "/boost/tr1"
-
     system "./configure", "--disable-debug",
                           "--disable-dependency-tracking",
                           "--disable-silent-rules",
                           "--prefix=#{prefix}",
-                          "--without-included-boost"
+                          "--with-qt4-dir=#{Formula["qt"].prefix}",
+                          "--without-included-boost",
+                          "--with-extra-inc=#{Formula["boost"].include}/boost/tr1"
     system "make", "install"
   end
 
