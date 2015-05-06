@@ -4,6 +4,7 @@ class Lyx < Formula
   version "2.1.3"
   sha256 "2fd52e7e5ee372983eb6b0a7f04765cb0df6f8c1f3420081d9f7761acfc75682"
 
+  depends_on :x11
   depends_on "boost"
   depends_on "libmagic"
   depends_on "qt"
