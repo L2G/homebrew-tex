@@ -12,18 +12,13 @@ class Lyx < Formula
   def install
     ENV["QT4DIR"] = Formula["qt"].prefix
     ENV.append "CPPFLAGS", "-I" + Formula["boost"].include + "/boost/tr1"
-    interactive_shell
 
-    # ENV.deparallelize  # if your formula fails when building in parallel
-
-    # Remove unrecognized options if warned by configure
     system "./configure", "--disable-debug",
                           "--disable-dependency-tracking",
                           "--disable-silent-rules",
                           "--prefix=#{prefix}",
                           "--without-included-boost"
-    # system "cmake", ".", *std_cmake_args
-    system "make", "install" # if this fails, try separate make/make install steps
+    system "make", "install"
   end
 
   test do
