@@ -10,13 +10,16 @@ class Lyx < Formula
   depends_on "qt"
 
   def install
-    system "./configure", "--disable-debug",
-                          "--disable-dependency-tracking",
-                          "--disable-silent-rules",
-                          "--prefix=#{prefix}",
-                          "--with-qt4-dir=#{Formula["qt"].prefix}",
-                          "--without-included-boost",
-                          "--with-extra-inc=#{Formula["boost"].include}/boost/tr1"
+    configure_args = [
+      "--disable-debug",
+      "--disable-dependency-tracking",
+      "--disable-silent-rules",
+      "--prefix=#{prefix}",
+      "--with-qt4-dir=#{Formula["qt"].prefix}",
+      "--without-included-boost",
+      "--with-extra-inc=#{Formula["boost"].include}/boost/tr1"
+    ]
+    system "./configure", *configure_args
     system "make", "install"
   end
 
