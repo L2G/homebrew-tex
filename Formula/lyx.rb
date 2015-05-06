@@ -4,10 +4,11 @@ class Lyx < Formula
   version "2.1.3"
   sha256 "2fd52e7e5ee372983eb6b0a7f04765cb0df6f8c1f3420081d9f7761acfc75682"
 
-  # depends_on "cmake" => :build
-  depends_on :x11 # if your formula requires any X11/XQuartz components
+  depends_on "qt"
 
   def install
+    ENV["QT4DIR"] = Formula["qt"].prefix
+    interactive_shell
     # ENV.deparallelize  # if your formula fails when building in parallel
 
     # Remove unrecognized options if warned by configure
